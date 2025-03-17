@@ -3,12 +3,13 @@ import requests
 
 URL = "https://api.weatherapi.com/v1/current.json"
 API_KEY = os.getenv("API_KEY")
-Q = os.getenv("Q", "Paris")
+Q_param = os.getenv("Q", "Paris")
+
 
 def get_weather() -> None:
     params = {
         "key": API_KEY,
-        "q": Q,
+        "q": Q_param,
     }
     response = requests.get(URL, params=params)
     if response.status_code == 200:
@@ -26,6 +27,7 @@ def get_weather() -> None:
         )
     else:
         raise Exception(response.status_code)
+
 
 if __name__ == "__main__":
     get_weather()
